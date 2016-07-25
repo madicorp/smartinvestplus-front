@@ -6,8 +6,8 @@
 
     Account.$inject = ['$resource'];
 
-    function Account($resource, API_BASE_URL) {
-        var service = $resource('api/accounts/:login', {}, {
+    function Account($resource) {
+        return $resource('api/current-account', {}, {
             'get': {
                 method: 'GET',
                 params: {},
@@ -20,7 +20,5 @@
                 }
             }
         });
-
-        return service;
     }
 })();

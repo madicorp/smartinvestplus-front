@@ -53,14 +53,19 @@
                                      function $httpDecorator($originalHttp) {
                                          var that = $originalHttp;
                                          var $httpDecorated = $originalHttp;
-                                         var originalGet = $httpDecorated.get;
-                                         $httpDecorated.get = decoratedGet;
+                                         $httpDecorated.get = decoratedHttpMethod($originalHttp.get);
+                                         $httpDecorated.post = decoratedHttpMethod($originalHttp.post);
+                                         $httpDecorated.put = decoratedHttpMethod($originalHttp.put);
+                                         $httpDecorated.delete = decoratedHttpMethod($originalHttp.delete);
                                          return $httpDecorated;
-                                         function decoratedGet() {
-                                             if (arguments[0].indexOf('api/') !== -1) {
-                                                 arguments[0] = API_BASE_URL + arguments[0];
-                                             }
-                                             return originalGet.apply(that, arguments);
+
+                                         function decoratedHttpMethod(originalMethod) {
+                                             return function() {
+                                                 if (arguments[0].indexOf('api/') !== -1) {
+                                                     arguments[0] = API_BASE_URL + arguments[0];
+                                                 }
+                                                 return originalMethod.apply(that, arguments);
+                                             };
                                          }
                                      }]);
     }

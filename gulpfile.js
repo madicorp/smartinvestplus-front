@@ -183,8 +183,7 @@ gulp.task('ngconstant:dev', function () {
         name: 'smartinvestplusApp',
         constants: {
             VERSION: util.parseVersion(),
-            DEBUG_INFO_ENABLED: true,
-            API_BASE_URL: config.uri + config.apiPort + '/'
+            DEBUG_INFO_ENABLED: true
         },
         template: config.constantTemplate,
         stream: true

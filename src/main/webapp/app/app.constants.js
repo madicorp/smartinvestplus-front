@@ -5,6 +5,5 @@
         .module('smartinvestplusApp')
         .constant('VERSION', "0.0.1-SNAPSHOT")
         .constant('DEBUG_INFO_ENABLED', true)
-        .constant('API_BASE_URL', "http://localhost:8080/")
 ;
 })();
